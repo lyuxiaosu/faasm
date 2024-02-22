@@ -22,9 +22,9 @@ function pip_cmd {
 
 pushd ${PROJ_ROOT} >> /dev/null
 
-if [ ! -d ${VENV_PATH} ]; then
+#if [ ! -d ${VENV_PATH} ]; then
     python3 -m venv ${VENV_PATH}
-fi
+#fi
 
 pip_cmd install -U pip setuptools wheel
 pip_cmd install -r requirements.txt

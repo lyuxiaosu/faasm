@@ -397,7 +397,7 @@ int32_t WasmModule::executeTask(
 
     // Perform the appropriate type of execution
     int returnValue;
-    msg.set_starttimestamp(faabric::util::getGlobalClock().epochMillis());
+    msg.set_starttimestamp(faabric::util::getGlobalClock().epochMicros());
     if (req->type() == faabric::BatchExecuteRequest::THREADS) {
         switch (req->subtype()) {
             case ThreadRequestType::PTHREAD: {
@@ -430,7 +430,7 @@ int32_t WasmModule::executeTask(
     }
 
     // Set result and timestamp
-    msg.set_finishtimestamp(faabric::util::getGlobalClock().epochMillis());
+    msg.set_finishtimestamp(faabric::util::getGlobalClock().epochMicros());
     msg.set_returnvalue(returnValue);
     if (returnValue != 0) {
         msg.set_outputdata(

@@ -32,9 +32,9 @@ then
     deactivate
 fi
 
-if [ ! -d ${VENV_PATH} ]; then
+#if [ ! -d ${VENV_PATH} ]; then
     ${PROJ_ROOT}/bin/create_venv.sh
-fi
+#fi
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source ${VENV_PATH}/bin/activate
