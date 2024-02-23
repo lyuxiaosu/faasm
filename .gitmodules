@@ -1,9 +1,12 @@
 [submodule "faabric"]
 	path = faabric
 	url = https://github.com/lyuxiaosu/faasm-faabric 
+        branch=main
 [submodule "clients/python"]
 	path = clients/python
 	url = https://github.com/lyuxiaosu/faasm-python
+        branch=main
 [submodule "clients/cpp"]
 	path = clients/cpp
 	url = https://github.com/lyuxiaosu/faasm-cpp
+        branch=main
