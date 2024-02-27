@@ -896,8 +896,6 @@ int32_t WAVMWasmModule::executeFunction(faabric::Message& msg)
     } else {
         // Set up main args
         prepareArgcArgv(msg);
-
-        // Get the main entrypoint function
         funcInstance = getMainFunction(moduleInstance);
         funcType = IR::FunctionType({}, {});
     }
@@ -907,10 +905,11 @@ int32_t WAVMWasmModule::executeFunction(faabric::Message& msg)
     int returnValue = 0;
     try {
         Runtime::catchRuntimeExceptions(
-          [this, &funcInstance, &funcType, &invokeArgs, &returnValue] {
+          [this, &funcInstance, &funcType, &invokeArgs, &returnValue, &msg] {
               IR::UntaggedValue result;
+	      msg.set_starttimestamp(faabric::util::getGlobalClock().epochMicros());
               executeWasmFunction(funcInstance, funcType, invokeArgs, result);
-
+	      msg.set_finishtimestamp(faabric::util::getGlobalClock().epochMicros());
               returnValue = result.i32;
           },
           [&returnValue](Runtime::Exception* ex) {

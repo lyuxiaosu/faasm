@@ -115,7 +115,7 @@ def _do_push(container, version):
 
 
 @task(iterable=["c"])
-def build(ctx, c, nocache=False, push=False):
+def build(ctx, c, nocache=True, push=False):
     """
     Build latest version of container images
     """
